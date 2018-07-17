@@ -12,7 +12,10 @@ var locations = [
 		title: "湖心亭"
 	}
 ];
+
+//初始函数
 function init() {
+	//创建地图
 	map = new AMap.Map(document.getElementById('map'), {
 		zoom: 13,
 		center: [120.16428, 30.272037]
@@ -24,6 +27,7 @@ function init() {
 	}
 }
 
+//添加点标记
 function addMarker(position) {
 	var lng = position.lng;
 	var lat = position.lat;
