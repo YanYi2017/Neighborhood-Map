@@ -13,6 +13,8 @@ var locations = [
 	}
 ];
 
+var largeInfoWindow = new AMap.InfoWindow();
+
 //初始函数
 function init() {
 	//创建地图
@@ -28,14 +30,30 @@ function init() {
 }
 
 //添加点标记
-function addMarker(position) {
-	var lng = position.lng;
-	var lat = position.lat;
-	var title = position.title;
+function addMarker(location) {
+	var lng = location.lng;
+	var lat = location.lat;
+	var title = location.title;
 
 	var marker = new AMap.Marker({
 		map: map,
 		position: [lng, lat],
 		title: title
 	});
+
+	marker.on('click',
+		populateInfoWindow);
+
+}
+
+//填充信息窗体
+function populateInfoWindow() {
+	var position = this.getPosition();
+	var title = this.getTitle();
+	console.log(position)
+	var infoWindow = new AMap.InfoWindow({
+		content: title
+	});
+
+	infoWindow.open(map, position);
 }
