@@ -1,4 +1,5 @@
 var map;
+var markers = [];
 
 var locations = [
 	{
@@ -23,6 +24,10 @@ function init() {
 		center: [120.16428, 30.272037]
 	});
 
+	//绑定按钮
+	document.getElementById('show-listings').addEventListener('click', showListings);
+	document.getElementById('hide-listings').addEventListener('click', hideListings);
+
 	//创建点标记
 	for(var i = 0; i < locations.length; i++) {
 		addMarker(locations[i]);
@@ -36,13 +41,16 @@ function addMarker(location) {
 	var title = location.title;
 
 	var marker = new AMap.Marker({
-		map: map,
 		position: [lng, lat],
 		title: title
 	});
 
-	marker.on('click',
-		populateInfoWindow);
+
+	marker.on('click', populateInfoWindow);
+
+	markers.push(marker);
+
+	showListings();
 
 }
 
@@ -50,10 +58,23 @@ function addMarker(location) {
 function populateInfoWindow() {
 	var position = this.getPosition();
 	var title = this.getTitle();
-	console.log(position)
+
 	var infoWindow = new AMap.InfoWindow({
 		content: title
 	});
 
 	infoWindow.open(map, position);
+}
+
+
+function showListings() {
+	markers.forEach(function(marker) {
+		marker.setMap(map);
+	});
+}
+
+function hideListings() {
+	markers.forEach(function(marker) {
+		marker.setMap(null);
+	});
 }
