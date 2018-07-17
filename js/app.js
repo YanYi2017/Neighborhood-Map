@@ -1,6 +1,6 @@
 var map;
 
-var positions = [
+var locations = [
 	{
 		lng: 120.151223,
 		lat: 30.258051,
@@ -19,8 +19,8 @@ function init() {
 	});
 
 	//创建点标记
-	for(var i = 0; i < positions.length; i++) {
-		addMarker(positions[i]);
+	for(var i = 0; i < locations.length; i++) {
+		addMarker(locations[i]);
 	}
 }
 
