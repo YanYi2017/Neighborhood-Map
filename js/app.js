@@ -11,6 +11,16 @@ var locations = [
 		lng: 120.144437,
 		lat: 30.246294,
 		title: "湖心亭"
+	},
+	{
+		lng: 120.14209,
+		lat: 30.232204,
+		title: "花港观鱼"
+	},
+	{
+		lng: 120.142146,
+		lat: 30.225483,
+		title: "花港观鱼"
 	}
 ];
 
@@ -32,6 +42,8 @@ function init() {
 	for(var i = 0; i < locations.length; i++) {
 		addMarker(locations[i]);
 	}
+
+	showList();
 }
 
 //添加点标记
@@ -66,15 +78,25 @@ function populateInfoWindow() {
 	infoWindow.open(map, position);
 }
 
-
+//显示点标记
 function showListings() {
 	markers.forEach(function(marker) {
 		marker.setMap(map);
 	});
 }
-
+//隐藏点标记
 function hideListings() {
 	markers.forEach(function(marker) {
 		marker.setMap(null);
 	});
+}
+//列出点标记
+function showList() {
+	var unordList = document.getElementById('markerList');
+	markers.forEach(function(marker) {
+		var list = document.createElement('li');
+		list.innerHTML = marker.getTitle();
+		unordList.appendChild(list);
+	});
+
 }
