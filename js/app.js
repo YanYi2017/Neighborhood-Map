@@ -1,4 +1,5 @@
 var map;
+
 var positions = [
 	{
 		lng: 120.151223,
@@ -19,14 +20,16 @@ function init() {
 
 	//创建点标记
 	for(var i = 0; i < positions.length; i++) {
-		var lng = positions[i].lng;
-		var lat = positions[i].lat;
-		var position = new AMap.LngLat(lng, lat);
-		console.log(lng);
-
-		var marker = new AMap.Marker({
-			map: map,
-			position: position
-		});
+		addMarker(positions[i]);
 	}
+}
+
+function addMarker(position) {
+	var lng = position.lng;
+	var lat = position.lat;
+
+	var marker = new AMap.Marker({
+		map: map,
+		position: [lng, lat]
+	});
 }
