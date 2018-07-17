@@ -27,9 +27,11 @@ function init() {
 function addMarker(position) {
 	var lng = position.lng;
 	var lat = position.lat;
+	var title = position.title;
 
 	var marker = new AMap.Marker({
 		map: map,
-		position: [lng, lat]
+		position: [lng, lat],
+		title: title
 	});
 }
