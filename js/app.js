@@ -38,6 +38,15 @@ var ViewModel = function() {
 
 ko.applyBindings(new ViewModel());
 
+function init() {
+	//创建地图
+	map = new AMap.Map(document.getElementById('map'), {
+		zoom: 13,
+		center: [120.16428, 30.272037]
+	});
+}
+
+
 /*
 var largeInfoWindow = new AMap.InfoWindow();
 
