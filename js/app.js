@@ -10,20 +10,35 @@ var locations = [
 	{
 		lng: 120.144437,
 		lat: 30.246294,
-		title: "湖心亭"
+		title: "湖断心亭"
 	},
 	{
 		lng: 120.14209,
 		lat: 30.232204,
 		title: "花港观鱼"
-	},
-	{
-		lng: 120.142146,
-		lat: 30.225483,
-		title: "花港观鱼"
 	}
 ];
 
+var ViewModel = function() {
+	var self = this;
+	self.locationList = ko.observableArray(locations);
+	self.filter = ko.observable('');
+	self.filteredLocation = ko.computed(function() {
+		var filter = self.filter().toLowerCase();
+		if(!filter) {
+			return self.locationList();
+		} else {
+			return ko.utils.arrayFilter(self.locationList(), function(location) {
+				console.dir(location.title);
+				return location.title.includes(filter);
+			})
+		}
+	}, this);
+}
+
+ko.applyBindings(new ViewModel());
+
+/*
 var largeInfoWindow = new AMap.InfoWindow();
 
 //初始函数
@@ -100,3 +115,4 @@ function showList() {
 	});
 
 }
+*/

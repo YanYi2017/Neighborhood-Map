@@ -6,15 +6,21 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body>
+		<!--
 		<input type="button" value="Show Listings" id="show-listings">
 		<input type="button" value="Hide Listings" id="hide-listings">
+		-->
+		<input type="text" placeholder="筛选" data-bind="value: filter">
 
-		<ul id="markerList"></ul>
+		<ul data-bind="foreach: filteredLocation">
+			<li data-bind="text: title"></li>
+		</ul>
 
+		<!--
 		<div id="map"></div>
-		
-
-	    <script src="https://webapi.amap.com/maps?v=1.4.8&key=29e96b45c687d33287feef7e6aea6e38&callback=init"></script>
+		-->
+		<script src="js/lib/knockout-3.4.2.js"></script>
+	    <script src="https://webapi.amap.com/maps?v=1.4.8&key=29e96b45c687d33287feef7e6aea6e38"></script>
 	    <script type="text/javascript" src="js/app.js"></script>
 	</body>
 </html>
