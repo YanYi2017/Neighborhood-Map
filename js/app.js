@@ -1,23 +1,16 @@
 var map;
 var markers = [];
 
-var locations = [
-	{
-		lng: 120.151223,
-		lat: 30.258051,
-		title: "断桥残雪"
-	},
-	{
-		lng: 120.144437,
-		lat: 30.246294,
-		title: "湖断心亭"
-	},
-	{
-		lng: 120.14209,
-		lat: 30.232204,
-		title: "花港观鱼"
-	}
-];
+var locations = [{
+		title: "断桥残雪",
+		position: [120.151223, 30.258051]
+	},{
+		title: "湖断心亭",
+		position: [120.144437, 30.246294]
+	},{
+		title: "花港观鱼",
+		position: [120.14209, 30.232204]
+	}];
 
 var ViewModel = function() {
 	var self = this;
