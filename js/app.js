@@ -18,18 +18,21 @@ var ViewModel = function() {
 	self.filter = ko.observable('');
 	self.filteredLocation = ko.computed(function() {
 		var filter = self.filter().toLowerCase();
-		if(!filter) {
-			return self.locationList();
-		} else {
-			return ko.utils.arrayFilter(self.locationList(), function(location) {
-				console.dir(location.title);
-				return location.title.includes(filter);
-			})
-		}
+		return ko.utils.arrayFilter(self.locationList(), function(location) {
+				if(location.title.includes(filter)) {
+					console.log(location.title + 'show');
+					location.marker.show();
+					return true;
+				} else {
+					console.log(location.title + 'hide');
+					location.marker.hide();
+					return false;
+				}
+		});
 	}, this);
 }
 
-ko.applyBindings(new ViewModel());
+
 
 function init() {
 	//创建地图
@@ -37,8 +40,21 @@ function init() {
 		zoom: 13,
 		center: [120.16428, 30.272037]
 	});
+	//创建标记
+	addMarkers(locations);
+	//使用knockout显示列表并实现筛选功能
+	ko.applyBindings(new ViewModel());
 }
 
+function addMarkers(locations) {
+	locations.forEach(function(location) {
+		//根据location对象创建点标记
+		var marker = new AMap.Marker(location);
+		marker.setMap(map);
+		//将marker与location关联在一起实现点标记的筛选功能
+		location.marker = marker;
+	});
+}
 
 /*
 var largeInfoWindow = new AMap.InfoWindow();
