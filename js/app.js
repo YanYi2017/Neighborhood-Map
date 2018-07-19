@@ -5,11 +5,17 @@ var locations = [{
 		title: "断桥残雪",
 		position: [120.151223, 30.258051]
 	},{
-		title: "湖断心亭",
-		position: [120.144437, 30.246294]
+		title: "雷峰夕照",
+		position: [120.148845,30.231697]
 	},{
 		title: "花港观鱼",
-		position: [120.14209, 30.232204]
+		position: [120.142141,30.232186]
+	},{
+		title: "苏堤春晓",
+		position: [120.137611,30.243425]
+	},{
+		title: "三潭映月",
+		position: [120.145408,30.238716]
 	}];
 
 var ViewModel = function() {
