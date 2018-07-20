@@ -26,7 +26,9 @@ var ViewModel = function() {
 		var filter = self.filter().toLowerCase();
 		return ko.utils.arrayFilter(self.locationList(), function(location) {
 				if(location.title.includes(filter)) {
-					console.log(location.title + 'show');
+					//设置点标记的动画效果
+					location.marker.setAnimation('AMAP_ANIMATION_DROP');
+
 					location.marker.show();
 					return true;
 				} else {
@@ -36,6 +38,12 @@ var ViewModel = function() {
 				}
 		});
 	}, this);
+	//点击列表中项目显示对应点标记信息窗口
+	self.clickList = function(location) {
+		populateInfoWindow(location.marker);
+		location.marker.setAnimation('AMAP_ANIMATION_DROP');
+
+	}
 }
 
 
@@ -56,21 +64,26 @@ function addMarkers(locations) {
 	locations.forEach(function(location) {
 		//根据location对象创建点标记
 		var marker = new AMap.Marker(location);
+		//为点标记指定显示地图
 		marker.setMap(map);
-		marker.on('click', populateInfoWindow);
+		//为点标记添加click事件监听
+		marker.on('click', function() {
+			populateInfoWindow(marker);
+		});
 		//将marker与location关联在一起实现点标记的筛选功能
 		location.marker = marker;
 	});
 }
 
 //填充信息窗体
-function populateInfoWindow() {
-	var position = this.getPosition();
-	var title = this.getTitle();
+function populateInfoWindow(marker) {
+	var position = marker.getPosition();
+	var title = marker.getTitle();
 
 	var infoWindow = new AMap.InfoWindow({
 		content: title,
-		closeWhenClickMap: true
+		closeWhenClickMap: true,
+		offset: new AMap.Pixel(10, -30)
 	});
 
 	infoWindow.open(map, position);

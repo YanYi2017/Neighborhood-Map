@@ -13,7 +13,7 @@
 		<input type="text" placeholder="筛选" data-bind="value: filter">
 
 		<ul data-bind="foreach: filteredLocation">
-			<li data-bind="text: title"></li>
+			<li data-bind="text: title, click: $root.clickList"></li>
 		</ul>
 
 
