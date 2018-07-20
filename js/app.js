@@ -39,7 +39,7 @@ var ViewModel = function() {
 }
 
 
-
+//初始函数
 function init() {
 	//创建地图
 	map = new AMap.Map(document.getElementById('map'), {
@@ -51,15 +51,29 @@ function init() {
 	//使用knockout显示列表并实现筛选功能
 	ko.applyBindings(new ViewModel());
 }
-
+//根据locations数组添加点标记
 function addMarkers(locations) {
 	locations.forEach(function(location) {
 		//根据location对象创建点标记
 		var marker = new AMap.Marker(location);
 		marker.setMap(map);
+		marker.on('click', populateInfoWindow);
 		//将marker与location关联在一起实现点标记的筛选功能
 		location.marker = marker;
 	});
+}
+
+//填充信息窗体
+function populateInfoWindow() {
+	var position = this.getPosition();
+	var title = this.getTitle();
+
+	var infoWindow = new AMap.InfoWindow({
+		content: title,
+		closeWhenClickMap: true
+	});
+
+	infoWindow.open(map, position);
 }
 
 /*
