@@ -24,7 +24,13 @@
 	float: left;
 }
 
-.clear_me {clear: left;}
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+	clear: both;
+}
 
 #info {
 	width: 50%;
