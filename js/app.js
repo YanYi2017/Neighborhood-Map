@@ -28,8 +28,9 @@ var ViewModel = function() {
 				if(location.title.includes(filter)) {
 					//设置点标记的动画效果
 					location.marker.setAnimation('AMAP_ANIMATION_DROP');
-
 					location.marker.show();
+					//根据显示的点标记分布的情况，自动缩放地图到合适的视野级别
+					map.setFitView();
 					return true;
 				} else {
 					console.log(location.title + 'hide');
