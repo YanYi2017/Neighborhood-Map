@@ -49,8 +49,9 @@ var ViewModel = function() {
 
 //初始函数
 function init() {
+	var $map = $('#map');
 	//创建地图
-	map = new AMap.Map(document.getElementById('map'), {
+	map = new AMap.Map($map[0], {
 		zoom: 13,
 		center: [120.16428, 30.272037]
 	});
@@ -81,10 +82,20 @@ function populateInfoWindow(marker) {
 	var title = marker.getTitle();
 
 	var infoWindow = new AMap.InfoWindow({
-		content: title,
 		closeWhenClickMap: true,
 		offset: new AMap.Pixel(10, -30)
 	});
-
 	infoWindow.open(map, position);
+	setContent(infoWindow, title);
+}
+//设置信息窗口中的内容
+function setContent(infoWindow, title) {
+	var url = 'https://api.cognitive.microsoft.com/bing/v7.0/images/search?q=西湖' + title + '&Subscription-Key=9fbb3a6ba91b40a19feceb9c1aef77b7';
+
+	$.getJSON(url, function(data) {
+		var content;
+		var imgUrl = data.value[0].thumbnailUrl;
+		content = '<img id="infoImg" src="' + imgUrl + '">';
+		infoWindow.setContent(content);
+	});
 }
