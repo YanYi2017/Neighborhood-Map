@@ -1,5 +1,4 @@
 var map;
-var markers = [];
 
 var locations = [{
 		title: "断桥残雪",
@@ -86,17 +85,31 @@ function populateInfoWindow(marker) {
 		closeWhenClickMap: true,
 		offset: new AMap.Pixel(10, -30)
 	});
-	infoWindow.open(map, position);
+	//根据打开点标记地址设置地图中心
+	map.setCenter(marker.getPosition());
+	//设置信息窗口内容
 	setContent(infoWindow, title);
+	infoWindow.open(map, position);
+
 }
 //设置信息窗口中的内容
 function setContent(infoWindow, title) {
 	var url = 'https://api.cognitive.microsoft.com/bing/v7.0/images/search?q=西湖' + title + '&Subscription-Key=9fbb3a6ba91b40a19feceb9c1aef77b7';
 
-	$.getJSON(url, function(data) {
-		var content;
-		var imgUrl = data.value[0].thumbnailUrl;
-		content = '<img id="infoImg" src="' + imgUrl + '">';
-		infoWindow.setContent(content);
-	});
+	$.getJSON(url)
+		.done(function(data) {
+			var content;
+			var imgUrl = data.value[0].thumbnailUrl;
+
+			var $div = $("<div id='info'></div>");
+			var $img = $("<img>");
+			$img.attr("src", imgUrl);
+
+			$div.append($img);
+			content = $div;
+			infoWindow.setContent(content[0]);
+		})
+		.fail(function() {
+			alert("出错了！！未能获取Bing搜索内容");
+		});
 }
