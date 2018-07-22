@@ -1,6 +1,30 @@
+#wrapper {
+	width: 980px; margin: 0 auto; border: 1px solid;
+}
+
+#markerList {
+	width: 150px;
+	border: 1px solid;
+	float: left;
+	
+}
+
+#markerList input{
+	border: 1px solid;
+}
+
+#markerList li {
+	list-style-type: none;
+	border: 1px solid;
+}
+
 #map {
 	height: 500px;
+	width: 810px;
+	float: left;
 }
+
+.clear_me {clear: left;}
 
 #info {
 	width: 50%;
