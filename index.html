@@ -3,24 +3,25 @@
 	<head>
 		<title>Neighborhood Map</title>
 		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body>
-		<div id="wrapper" class="clearfix">
-			<div id="markerList">
-				<input type="text" placeholder="筛选" data-bind="value: filter">
+		<div class="container fill">
+			<div class="row fill">
+				<div class="col-md-2">
+					<input type="text" placeholder="筛选" data-bind="value: filter">
 
-				<ul data-bind="foreach: filteredLocation">
-					<li data-bind="text: title, click: $root.clickList"></li>
-				</ul>
+					<ul data-bind="foreach: filteredLocation">
+						<li data-bind="text: title, click: $root.clickList"></li>
+					</ul>
+				</div>
+				<div class="col-md-10 fill">
+					<div id="map"></div>
+				</div>
 			</div>
-			<div id="map"></div>
 		</div>
 
-
-
-
-		
 
 		<script src="js/lib/jquery-3.3.1.min.js"></script>
 		<script src="js/lib/knockout-3.4.2.js"></script>

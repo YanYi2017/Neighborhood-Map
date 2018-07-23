@@ -1,37 +1,5 @@
-#wrapper {
-	width: 980px; margin: 0 auto; border: 1px solid;
-}
+html, body {height: 100%;}
 
-#markerList {
-	width: 150px;
-	border: 1px solid;
-	float: left;
-	
-}
+.fill {height: 100%;}
 
-#markerList input{
-	border: 1px solid;
-}
-
-#markerList li {
-	list-style-type: none;
-	border: 1px solid;
-}
-
-#map {
-	height: 500px;
-	width: 810px;
-	float: left;
-}
-
-.clearfix:after {
-	content: ".";
-	display: block;
-	height: 0;
-	visibility: hidden;
-	clear: both;
-}
-
-#info {
-	width: 50%;
-}
+#map {height: 100%;}
