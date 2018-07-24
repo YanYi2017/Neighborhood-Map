@@ -15,6 +15,21 @@ var locations = [{
 	},{
 		title: "三潭映月",
 		position: [120.145408,30.238716]
+	},{
+		title: "曲院风荷",
+		position: [120.135502,30.251182]
+	},{
+		title: "平湖秋月",
+		position: [120.146136,30.252205]
+	},{
+		title: "柳浪闻莺",
+		position: [120.158016,30.239323]
+	},{
+		title: "双峰插云",
+		position: [120.122558,30.247494]
+	},{
+		title: "南屏晚钟",
+		position: [120.149073,30.228588]
 	}];
 
 var ViewModel = function() {
@@ -25,11 +40,11 @@ var ViewModel = function() {
 		var filter = self.filter().toLowerCase();
 		return ko.utils.arrayFilter(self.locationList(), function(location) {
 				if(location.title.includes(filter)) {
+					//根据显示的点标记分布的情况，自动缩放地图到合适的视野级别
+					map.setFitView();
 					//设置点标记的动画效果
 					location.marker.setAnimation('AMAP_ANIMATION_DROP');
 					location.marker.show();
-					//根据显示的点标记分布的情况，自动缩放地图到合适的视野级别
-					map.setFitView();
 					return true;
 				} else {
 					console.log(location.title + 'hide');
