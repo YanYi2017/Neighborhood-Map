@@ -1,4 +1,5 @@
 var map;
+var infoWindow;
 
 var locations = [{
 		title: "断桥残雪",
@@ -36,8 +37,11 @@ var ViewModel = function() {
 	var self = this;
 	self.locationList = ko.observableArray(locations);
 	self.filter = ko.observable('');
+	//返回筛选后包含filter的locationList数组
 	self.filteredLocation = ko.computed(function() {
 		var filter = self.filter().toLowerCase();
+		//筛选时关闭打开的信息窗口
+		if(infoWindow.getIsOpen()) infoWindow.close();
 		return ko.utils.arrayFilter(self.locationList(), function(location) {
 				if(location.title.includes(filter)) {
 					//根据显示的点标记分布的情况，自动缩放地图到合适的视野级别
@@ -69,7 +73,12 @@ function init() {
 		zoom: 13,
 		center: [120.16428, 30.272037]
 	});
+	infoWindow = new AMap.InfoWindow({
+		closeWhenClickMap: true,
+		offset: new AMap.Pixel(10, -30)
+	});
 	console.log(map);
+	console.log(infoWindow);
 	//创建标记
 	addMarkers(locations);
 	//使用knockout显示列表并实现筛选功能
@@ -98,11 +107,6 @@ function addMarkers(locations) {
 function populateInfoWindow(marker) {
 	var position = marker.getPosition();
 	var title = marker.getTitle();
-
-	var infoWindow = new AMap.InfoWindow({
-		closeWhenClickMap: true,
-		offset: new AMap.Pixel(10, -30)
-	});
 	//根据打开点标记地址设置地图中心
 	map.setCenter(marker.getPosition());
 	//设置信息窗口内容
