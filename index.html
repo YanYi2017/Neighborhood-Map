@@ -18,7 +18,7 @@
 							<span class="navbar-toggler-icon"></span>
 						</button>
 						<div class="collapse navbar-collapse flex-column" id="navbarNav">
-							<input type="text" class="form-control" id="filter" data-bind="value: filter" placeholder="三潭映月">
+							<input type="text" class="form-control" id="filter" data-bind="textInput: filter" placeholder="三潭映月">
 							<ul class="navbar-nav flex-column" data-bind="foreach: filteredLocation">
 								<li class="nav-item" data-bind="text: title, click: $root.clickList"></li>
 							</ul>
