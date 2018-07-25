@@ -75,7 +75,7 @@ function init() {
 	//使用knockout显示列表并实现筛选功能
 	ko.applyBindings(new ViewModel());
 }
-var mapErrorHandler = function(e) {
+function mapErrorHandler() {
 	window.alert('Error');
 }
 //根据locations数组添加点标记
