@@ -39,7 +39,7 @@ var ViewModel = function() {
 	self.filter = ko.observable('');
 	//返回筛选后包含filter的locationList数组
 	self.filteredLocation = ko.computed(function() {
-		var filter = self.filter().toLowerCase();
+		var filter = self.filter().toLowerCase().trim();
 		//筛选时关闭打开的信息窗口
 		if(infoWindow.getIsOpen()) infoWindow.close();
 		return ko.utils.arrayFilter(self.locationList(), function(location) {
