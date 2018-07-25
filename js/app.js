@@ -59,7 +59,6 @@ var ViewModel = function() {
 	//点击列表中项目显示对应点标记信息窗口
 	self.clickList = function(location) {
 		populateInfoWindow(location.marker);
-		location.marker.setAnimation('AMAP_ANIMATION_DROP');
 
 	}
 }
@@ -84,6 +83,7 @@ function init() {
 	//使用knockout显示列表并实现筛选功能
 	ko.applyBindings(new ViewModel());
 }
+//map地图加载出错时弹出警告框
 function mapErrorHandler() {
 	window.alert('Error');
 }
@@ -109,6 +109,8 @@ function populateInfoWindow(marker) {
 	var title = marker.getTitle();
 	//根据打开点标记地址设置地图中心
 	map.setCenter(marker.getPosition());
+	//点标记跳动
+	marker.setAnimation('AMAP_ANIMATION_DROP');
 	//设置信息窗口内容
 	setContent(infoWindow, title);
 	infoWindow.open(map, position);
