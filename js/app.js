@@ -47,7 +47,6 @@ var ViewModel = function() {
 					location.marker.show();
 					return true;
 				} else {
-					console.log(location.title + 'hide');
 					location.marker.hide();
 					return false;
 				}
@@ -70,10 +69,14 @@ function init() {
 		zoom: 13,
 		center: [120.16428, 30.272037]
 	});
+	console.log(map);
 	//创建标记
 	addMarkers(locations);
 	//使用knockout显示列表并实现筛选功能
 	ko.applyBindings(new ViewModel());
+}
+var mapErrorHandler = function(e) {
+	window.alert('Error');
 }
 //根据locations数组添加点标记
 function addMarkers(locations) {
