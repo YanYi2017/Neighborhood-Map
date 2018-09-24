@@ -76,8 +76,6 @@ function init() {
 		closeWhenClickMap: true,
 		offset: new AMap.Pixel(10, -30)
 	});
-	console.log(map);
-	console.log(infoWindow);
 	//创建标记
 	addMarkers(locations);
 	//使用knockout显示列表并实现筛选功能
@@ -118,7 +116,7 @@ function populateInfoWindow(marker) {
 }
 //设置信息窗口中的内容
 function setContent(infoWindow, title) {
-	var url = 'https://api.cognitive.microsoft.com/bing/v7.0/images/search?q=西湖' + title + '&Subscription-Key=9fbb3a6ba91b40a19feceb9c1aef77b7';
+	var url = 'https://api.cognitive.microsoft.com/bing/v7.0/images/search?q=西湖' + title + '&Subscription-Key=fc50c63cf57b4c4aab1b1ef9a52aa866';
 
 	$.getJSON(url)
 		.done(function(data) {
