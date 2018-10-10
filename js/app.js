@@ -73,7 +73,7 @@ function init() {
 		center: [120.16428, 30.272037]
 	});
 	infoWindow = new AMap.InfoWindow({
-		closeWhenClickMap: true,
+		//closeWhenClickMap: true,
 		offset: new AMap.Pixel(10, -30)
 	});
 	//创建标记
@@ -103,8 +103,9 @@ function addMarkers(locations) {
 
 //填充信息窗体
 function populateInfoWindow(marker) {
-	var position = marker.getPosition();
-	var title = marker.getTitle();
+	let position = marker.getPosition();
+	let title = marker.getTitle();
+
 	//根据打开点标记地址设置地图中心
 	map.setCenter(marker.getPosition());
 	//点标记跳动
@@ -123,12 +124,12 @@ function setContent(infoWindow, title) {
 			var content;
 			var imgUrl = data.value[0].thumbnailUrl;
 
-			var $div = $("<div id='info'></div>");
-			var $img = $("<img>");
+			//var $div = $("<div class='info'></div>");
+			var $img = $("<img class='infoImg'>");
 			$img.attr("src", imgUrl);
 
-			$div.append($img);
-			content = $div;
+			//$div.append($img);
+			content = $img;
 			infoWindow.setContent(content[0]);
 		})
 		.fail(function() {
